@@ -47,6 +47,9 @@ select count(*) from vpx_host;
 \pset title 'Number of VMs'
 select count(*) from vpx_vm;
 
+\pset title 'Event and Task Keep'
+ select * from vpx_parameter where name in ('event.maxAge','task.maxAge');
+
 \pset title 'Procedures'
 
 select
