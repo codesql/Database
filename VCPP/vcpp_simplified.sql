@@ -111,6 +111,9 @@ select name, context, unit, setting from pg_settings where name in ('listen_addr
 \pset title 'Archive Setup'
 select name, context, unit, setting from pg_settings where name like '%archive%';
 
+\pset title 'Backup'
+ select pg_is_in_backup();
+
 \pset title 'Filesystem'
 \echo `df -h`
 \echo `du -sx /storage/log/*/* |sort -n`
