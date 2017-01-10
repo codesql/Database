@@ -39,8 +39,11 @@ select * from vpx_dbm_counter_metadata;
 
 select relname as "Table Name", reltuples as "Counts" from pg_class where relname in ('vpx_event','vpx_event_arg','vpx_task','vpx_stat_counter','vpx_topn_past_day','vpx_topn_past_week','vpx_topn_past_month','vpx_topn_past_year') order by 1;
 
-
 select relname as "Table Name", reltuples as "Counts" from pg_class where relname in ('vpx_hist_stat1','vpx_hist_stat2','vpx_hist_stat3','vpx_hist_stat4');
+
+select count(*) from vpx_host;
+
+select count(*) from vpx_vm;
 
 \pset title 'Procedures'
 
