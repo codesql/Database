@@ -41,8 +41,10 @@ select relname as "Table Name", reltuples as "Counts" from pg_class where relnam
 
 select relname as "Table Name", reltuples as "Counts" from pg_class where relname in ('vpx_hist_stat1','vpx_hist_stat2','vpx_hist_stat3','vpx_hist_stat4');
 
+\pset title 'Number of Hosts'
 select count(*) from vpx_host;
 
+\pset title 'Number of VMs'
 select count(*) from vpx_vm;
 
 \pset title 'Procedures'
