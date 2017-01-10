@@ -23,6 +23,9 @@ WHERE
                 END
 ;
 
+select ######::regclass
+Example,
+select 17393::regclass
 
 
 SELECT pgn.nspname, relname, pg_size_pretty(relpages::bigint * 8 * 1024) AS size, 
