@@ -28,6 +28,8 @@ sequence_catalog | sequence_schema | sequence_name | data_type | numeric_precisi
  vcdb             | vpx             | vpx_alarm_seq | bigint    |                64 |                       2 |             0 | 1           | 1             | 9223372036854775807 | 100       | NO
 (1 row)
 
+-- pg_sequences available in postgresql 10.
+
 -- Select the sequence directly
 
 vcdb=# select * from vpx_alarm_seq;
