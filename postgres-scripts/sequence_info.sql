@@ -29,6 +29,9 @@ sequence_catalog | sequence_schema | sequence_name | data_type | numeric_precisi
 (1 row)
 
 -- pg_sequences available in postgresql 10.
+-- for the time being, just built it for the convinient.
+vcdb=# create view pg_sequences as (SELECT * FROM information_schema.sequences);
+CREATE VIEW
 
 -- Select the sequence directly
 
