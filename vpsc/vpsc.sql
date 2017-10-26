@@ -17,7 +17,7 @@ select @@version , current_user ;
 
 select * from vpx_version;
 
-select (select count(*) from vpx_vm) "Number of VMs", (select count(*) from vpx_hosts) "Number of Hosts";
+select (select count(*) from vpx_vm) "Number of VMs", (select count(*) from vpx_host) "Number of Hosts";
 
 exec sp_MSreplcheck_subscribe;
 
