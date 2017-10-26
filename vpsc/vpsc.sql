@@ -17,6 +17,8 @@ select @@version , current_user ;
 
 select * from vpx_version;
 
+select (select count(*) from vpx_vm) "Number of VMs", (select count(*) from vpx_hosts) "Number of Hosts";
+
 exec sp_MSreplcheck_subscribe;
 
 print  "#####################################################"
@@ -78,6 +80,24 @@ SELECT (SELECT   COUNT(*) FROM VPX_HIST_STAT1) AS VPX_HIST_STAT1 ,
 (SELECT COUNT(*) FROM VPX_HIST_STAT2 ) AS VPX_HIST_STAT2,
 (SELECT COUNT(*) FROM VPX_HIST_STAT3 ) AS VPX_HIST_STAT3,
 (SELECT COUNT(*) FROM VPX_HIST_STAT4 ) AS VPX_HIST_STAT4;
+
+print "#####################################################"
+print "                Hist Stat Settings                   "
+print "#####################################################"
+
+ select substring(interval_def_name, 9,9),convert(decimal(5,0),interval_val/60) "Interval Duration in Min", 
+ case convert(decimal(5,0),INTERVAL_LENGTH/3600/24)
+   when 1 then 'Hourly'
+   when 7 then 'Daily'
+   when 30 then 'Monthly'
+   when 365 then 'Yearly'
+ end "Interval"
+  , stats_level "Statistic Level", 
+  case rollup_enabled_flg 
+   when 1 then 'YES'
+   when 0 then 'NO'
+  end "Stat Enable"  from VPX_STAT_INTERVAL_DEF;
+
 
 print  "#####################################################"
 print  "                  Active Sessions                    "
