@@ -20,3 +20,15 @@ CREATE UNIQUE INDEX pk_vpx_entity ON vpx_entity USING btree (id)
 CREATE INDEX vpx_entity_f1 ON vpx_entity USING btree (parent_id)
 CREATE INDEX vpxi_entity_type_id ON vpx_entity USING btree (type_id)
 (3 rows)
+
+
+OR 
+
+vcdb=# select * from pg_indexes where tablename = 'vpx_int_array';
+
+schemaname |   tablename   |    indexname     | tablespace |                                  indexdef
+------------+---------------+------------------+------------+-----------------------------------------------------------------------------
+vpx        | vpx_int_array | vpx_int_array_f1 |            | CREATE INDEX vpx_int_array_f1 ON vpx_int_array USING btree (array_id)
+vpx        | vpx_int_array | vpx_int_array_f2 |            | CREATE INDEX vpx_int_array_f2 ON vpx_int_array USING btree (type_id)
+vpx        | vpx_int_array | vpx_int_array_m1 |            | CREATE INDEX vpx_int_array_m1 ON vpx_int_array USING btree (mo_type, mo_id)
+(3 rows)
