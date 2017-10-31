@@ -1,3 +1,5 @@
+\di+
+
 select pg_get_indexdef(indexrelid) from pg_index where indrelid::regclass::text = 'table_name_here';
 
 
@@ -23,6 +25,7 @@ CREATE INDEX vpxi_entity_type_id ON vpx_entity USING btree (type_id)
 
 
 OR 
+
 
 vcdb=# select * from pg_indexes where tablename = 'vpx_int_array';
 
