@@ -39,6 +39,7 @@ select * from vpx_dbm_counter_metadata;
 
 select relname as "Table Name", reltuples as "Counts" from pg_class where relname in ('vpx_event','vpx_event_arg','vpx_task','vpx_stat_counter','vpx_topn_past_day','vpx_topn_past_week','vpx_topn_past_month','vpx_topn_past_year') order by 1;
 
+\pset title 'Hist Stat table counts'
 select relname as "Table Name", reltuples as "Counts" from pg_class where relname in ('vpx_hist_stat1','vpx_hist_stat2','vpx_hist_stat3','vpx_hist_stat4');
 
 \pset title 'Number of Hosts'
@@ -68,7 +69,15 @@ select 'https://ikb.vmware.com/kb/2033096 ' as "Job Performance KB";
 
 
 \pset title 'Stat Level'
-select interval_seq_num as "Intervals", interval_def_name as "Interval Description ", interval_val as "Interval Value", interval_length as "Interval Length", stats_level as "Stats Level", rollup_enabled_flg as "Enablement"  from vpx_stat_interval_def order by 1 ASC;
+select trim(leading 'history.' from interval_def_name) as "Interval Description", round(cast(float8 (interval_val/60)as numeric) ,0)  as "Interval Value", 
+ round(cast(float8(interval_length/3600/24) as numeric), 0)  as "Save For Days .. ",
+   stats_level as "Stats Level",  
+  case
+     when rollup_enabled_flg=1 then 'Yes'
+	 when rollup_enabled_flg=2 then 'No'
+  end 
+  as "Enablement"  from vpx_stat_interval_def order by 1 ASC;
+
 
 \pset title 'vCenter Job Related'
 select job_id as "Job ID", status as "Status", last_run as "Last Run" from vpx_job_log;
@@ -99,6 +108,8 @@ WHERE table_schema NOT IN ('information_schema',
 ORDER BY size DESC
 LIMIT 10;
 
+\pset title 'Top 10 Large tables that might consider to vacuum full them'
+select 'vacuum full verbose analyze ' ||  table_name || ';      ' ||  table_name, pg_relation_size(table_name) as size  FROM information_schema.tables WHERE table_schema NOT IN ('information_schema', 'pg_catalog')  ORDER BY size DESC LIMIT 10;
 
 \pset title 'Postgresql parameter files'
 show all;
@@ -109,7 +120,6 @@ select name, setting from pg_settings where category='File Locations';
 
 \pset title 'Memory and Buffers'
 select name, context, unit, setting from pg_settings where name in ('listen_address','max_connections','shared_buffers','effective_cache_size','work_mem','maintenance_work_mem') order by context, name;
-
 
 \pset title 'Archive Setup'
 select name, context, unit, setting from pg_settings where name like '%archive%';
