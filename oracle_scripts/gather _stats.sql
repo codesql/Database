@@ -1,3 +1,7 @@
+-- validate stale stats
+select * from dba_tab_statistics where stale_stats = 'YES';
+select * from dba_tab_statistics where table_name='&tablename';
+
 --regather stats for vc enter
 --schema
 set echo on
