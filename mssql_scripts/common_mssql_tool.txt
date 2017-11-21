@@ -9,3 +9,11 @@ DBCC SHOW_STATISTICS;
 
 -- invoke performance report, Oracle's oraChk
 perfmon /report
+
+
+-- update stats
+use dbname
+GO  
+exec sp_updatestats;  
+
+exec sp_updatestats tablename;
