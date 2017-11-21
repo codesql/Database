@@ -1,0 +1,11 @@
+-- validate db integrity
+DBCC CHECKDB;
+
+--shrink transacation logs
+DBCC SHRINKFILE;
+
+-- show stats
+DBCC SHOW_STATISTICS;
+
+-- invoke performance report, Oracle's oraChk
+perfmon /report
