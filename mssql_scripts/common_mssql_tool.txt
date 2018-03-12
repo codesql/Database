@@ -1,3 +1,4 @@
+-- comments
 -- validate db integrity
 DBCC CHECKDB;
 
