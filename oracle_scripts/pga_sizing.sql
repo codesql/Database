@@ -1,4 +1,5 @@
 -- how is pga condition looks like
+- what is the passthru
 select name, value from v$sysstat where name like  'workarea executions%';
 
 -- what do I have currently.
