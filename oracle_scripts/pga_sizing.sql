@@ -2,7 +2,8 @@
 - what is the passthru
 select name, value from v$sysstat where name like  'workarea executions%';
 
--- what do I have currently.
+-- what do I have currently. 
+-- important, my pga aggregate target size
 -- while on it, look at cache hits as well.
 set lines 150;
 col name format a50;
