@@ -8,6 +8,8 @@ select name, value from v$sysstat where name like  'workarea executions%';
 set lines 150;
 col name format a50;
 select * from v$pgastat;
+--in MB
+select  name, value/1024/1024 from v$pgastat;
 
 -- what using all my pga.
 select pid, program, pga_used_mem, pga_alloc_mem, pga_freeable_mem, pga_max_mem from v$process;
