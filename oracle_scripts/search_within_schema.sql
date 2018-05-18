@@ -1,3 +1,8 @@
+-- procedure to search a record within an Oracle schema.
+-- this will takes awhile to run as it search through every tables, every column and every records. 
+-- change the data type from char to something else if your not searching a string. be sure to have a where clause or the searching will be even longer.
+
+
 undef searchme
 SET SERVEROUTPUT ON SIZE 100000
     DECLARE
