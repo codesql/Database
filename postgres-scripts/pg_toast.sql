@@ -27,6 +27,16 @@ select ######::regclass
 Example,
 select 17393::regclass
 
+--get object from reglass id.
+select oid::regclass from pg_class where reltoastrelid='<<<>>>'::regclass;
+select oid::regclass from pg_class where reltoastrelid='18974'::regclass;
+
+       oid
+------------------
+ vpx_event_arg_39
+(1 row)
+
+
 
 SELECT pgn.nspname, relname, pg_size_pretty(relpages::bigint * 8 * 1024) AS size, 
      CASE WHEN relkind = 't' 
