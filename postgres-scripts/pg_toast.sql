@@ -27,6 +27,11 @@ select ######::regclass
 Example,
 select 17393::regclass
 
+
+select pg_toast_29042::regclass;
+
+
+
 --get object from reglass id.
 select oid::regclass from pg_class where reltoastrelid='<<<>>>'::regclass;
 select oid::regclass from pg_class where reltoastrelid='18974'::regclass;
