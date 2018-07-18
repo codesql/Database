@@ -76,3 +76,14 @@ VCDB=# select table_name, column_name from information_schema.columns where colu
  vpx_host                      | authd_port
  vpx_host                      | cpu_power_mgmt_support
  vpx_host_vm_config_option     | create_supported_flg
+
+
+VCDB=#  select table_name from information_schema.columns where column_name like 'hard%';
+         table_name
+-----------------------------
+ vpx_non_orm_vm_config_info
+ vpx_non_orm_vm_config_info
+ vpx_non_orm_vm_config_info
+ vpx_vdevice_file_backing
+ vpx_sn_vdevice_file_backing
+(5 rows)
